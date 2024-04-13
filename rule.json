@@ -4,7 +4,7 @@
     "crit": 8,
     "correct": 8,
     "regex": "(?m)\\[steamcommunity.com/gift/\\d*]\\(https?://.*\\)",
-    "tag": ["markdown", "md", "clickable", "spoof", "link", "scam", "phishing", "discord", "type:identifier"],
+    "tag": ["reason:phishing", "type:identifier", "info:markdown", "info:steam"],
     "id": 0,
     "example": [
       "[steamcommunity.com/gift/76561198802362008](https://f-link.thescamsite.me/clNvh)"
@@ -21,7 +21,7 @@
     "crit": 8,
     "correct": 10,
     "regex": "(?m)^50\\$\\sfrom\\ssteam\\n\\[steamcommunity\\.com/gift/\\d*]\\(https?://.*\\)\\n@everyone$",
-    "tag": ["markdown", "md", "spoof", "link", "scam", "phishing", "discord", "2023-03_improved_message_markdown_guild", "discord:experiment", "Improved Message Markdown Guild Experiment", "type:exact"],
+    "tag": ["reason:phishing", "type:exact", "info:markdown", "info:steam"],
     "id": 1,
     "example": [
       "50$ from steam\n[steamcommunity.com/gift/76561198802362008](https://f-link.thescamsite.me/clNvh)\n@everyone"
@@ -45,7 +45,7 @@
     "crit": 3,
     "correct": 10,
     "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,})",
-    "tag": ["discord", "invite", "type:identifier"],
+    "tag": ["type:identifier", "reason:advert", "info:discord"],
     "id": 2,
     "example": ["discord.gg/enigmadev"],
     "inherit": [],
@@ -62,7 +62,7 @@
     "crit": 8,
     "correct": 10,
     "regex": "(?m)^50\\$\\sfor\\ssteam\\s\\[steamcommunity\\.com/gift/\\d*]\\(https?://.*\\)\\n@everyone$",
-    "tag": ["markdown", "md", "spoof", "link", "scam", "phishing", "discord", "2023-03_improved_message_markdown_guild", "discord:experiment", "Improved Message Markdown Guild Experiment", "type:exact"],
+    "tag": ["reason:phishing", "type:exact", "info:markdown", "info:steam"],
     "id": 3,
     "example": [
       "50$ for steam [steamcommunity.com/gift/758474483](https://qptr.thescamsite.ru/OqVS )\n@everyone"
@@ -86,7 +86,7 @@
     "crit": 8,
     "correct": 10,
     "regex": "(?m)(?s)(?i)^50\\$\\s(from|for)\\ssteam[\\n\\s-]{0,3}\\[steamcommunity\\.com/gift/\\d*]\\(https?://.*\\)[\\n\\s-]{0,3}\\@everyone$",
-    "tag": ["markdown", "md", "spoof", "link", "scam", "phishing", "discord", "2023-03_improved_message_markdown_guild", "discord:experiment", "Improved Message Markdown Guild Experiment", "type:generic"],
+    "tag": ["reason:phishing", "type:generic", "info:markdown", "info:steam"],
     "id": 4,
     "example": [
       "50$ for steam [steamcommunity.com/gift/758474483](https://qptr.thescamsite.ru/OqVS )\n@everyone",
@@ -111,7 +111,7 @@
     "crit": 4,
     "correct": 2,
     "regex": "(?i)(porn|sex|18|onlyfan)",
-    "tag": ["nsfw", "questionable", "18+", "type:identifier"],
+    "tag": ["reason:adult", "type:identifier"],
     "id": 5,
     "example": ["18+"],
     "inherit": [],
@@ -122,7 +122,7 @@
     "crit": 8,
     "correct": 7,
     "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan){1,}[a-zA-Z0-9-]*).*@everyone.*",
-    "tag": ["discord", "invite", "phishing", "sexual", "questionable", "18+", "nsfw", "stealer", "loginqr", "type:generic"],
+    "tag": ["reason:adult", "type:generic", "reason:phishing", "info:discord"],
     "id": 6,
     "example": ["TEEN/ONLYFANS PORN HERE JOIN NOW! \uD83C\uDF55\uD83C\uDF51 https://discord.gg/thescamsite-pornox @everyone"],
     "inherit": [2, 5, 7],
@@ -133,7 +133,7 @@
     "crit": 6,
     "correct": 7,
     "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan){1,}[a-zA-Z0-9-]*)",
-    "tag": ["discord", "invite", "nsfw", "questionable", "18+", "type:identifier"],
+    "tag": ["reason:adult", "type:identifier", "info:discord"],
     "id": 7,
     "example": ["discord.gg/thescamsite-pornox"],
     "inherit": [2, 5],
@@ -144,7 +144,7 @@
     "crit": 2,
     "correct": 8,
     "regex": "(?<protocol>https?://)?(?<ipv4>(?<sec1>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(?<sec2>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(?<sec3>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(?<sec4>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d))(?<port>:\\d{1,5})?",
-    "tag": ["sensitive", "personal", "type:identifier"],
+    "tag": ["reason:sensitive", "type:identifier"],
     "example": ["8.8.4.4", "255.255.255.0"],
     "id": 8,
     "inherit": [],
