@@ -147,6 +147,7 @@ fetch('rule.json')
                             const button = document.createElement('span');
                             button.textContent = id;
                             button.classList.add('tag');
+                            button.classList.add('inherit_tag');
                             button.addEventListener('click', () => {
                                 window.location.href = '?search=' + id;
                             });
