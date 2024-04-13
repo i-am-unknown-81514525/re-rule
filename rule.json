@@ -1,0 +1,153 @@
+[
+  {
+    "name": "Identifier: Clickable link masked with steam gift link",
+    "crit": 8,
+    "correct": 8,
+    "regex": "(?m)\\[steamcommunity.com/gift/\\d*]\\(https?://.*\\)",
+    "tag": ["markdown", "md", "clickable", "spoof", "link", "scam", "phishing", "discord", "type:identifier"],
+    "id": 0,
+    "example": [
+      "[steamcommunity.com/gift/76561198802362008](https://f-link.thescamsite.me/clNvh)"
+    ],
+    "inherit": [],
+    "revision": [{
+        "regex": "(?m)\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)",
+        "index": 0,
+        "reason": "Improve protocol syntax + Consistency"
+      }]
+  },
+  {
+    "name": "Exact match: Message link masked in steam URL string with promoting as $50 steam gift card + everyone tag [variant 0]",
+    "crit": 8,
+    "correct": 10,
+    "regex": "(?m)^50\\$\\sfrom\\ssteam\\n\\[steamcommunity\\.com/gift/\\d*]\\(https?://.*\\)\\n@everyone$",
+    "tag": ["markdown", "md", "spoof", "link", "scam", "phishing", "discord", "2023-03_improved_message_markdown_guild", "discord:experiment", "Improved Message Markdown Guild Experiment", "type:exact"],
+    "id": 1,
+    "example": [
+      "50$ from steam\n[steamcommunity.com/gift/76561198802362008](https://f-link.thescamsite.me/clNvh)\n@everyone"
+    ],
+    "inherit": [0, 4],
+    "revision": [
+      {
+        "regex": "(?m)^50\\$\\sfrom\\ssteam\\n\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)\\n@everyone$",
+        "index": 1,
+        "reason": "Bugfix: Missing dot escape"
+      },
+      {
+        "regex": "(?m)^50\\$\\sfrom\\ssteam\\n\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)\\n@everyone$",
+        "index": 0,
+        "reason": "Improve protocol syntax + Consistency"
+      }
+    ]
+  },
+  {
+    "name": "Identifier: Discord invite link",
+    "crit": 3,
+    "correct": 10,
+    "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,})",
+    "tag": ["discord", "invite", "type:identifier"],
+    "id": 2,
+    "example": ["discord.gg/enigmadev"],
+    "inherit": [],
+    "revision": [
+      {
+        "regex": "(discord.gg|discord.com/invite)/[a-zA-Z0-9-]{1,}",
+        "index": 0,
+        "reason": "Bugfix:missing dot escape"
+      }
+    ]
+  },
+  {
+    "name": "Exact match: Message link masked in steam URL string with promoting as $50 steam gift card + everyone tag [variant 1]",
+    "crit": 8,
+    "correct": 10,
+    "regex": "(?m)^50\\$\\sfor\\ssteam\\s\\[steamcommunity\\.com/gift/\\d*]\\(https?://.*\\)\\n@everyone$",
+    "tag": ["markdown", "md", "spoof", "link", "scam", "phishing", "discord", "2023-03_improved_message_markdown_guild", "discord:experiment", "Improved Message Markdown Guild Experiment", "type:exact"],
+    "id": 3,
+    "example": [
+      "50$ for steam [steamcommunity.com/gift/758474483](https://qptr.thescamsite.ru/OqVS )\n@everyone"
+    ],
+    "inherit": [0, 4],
+    "revision": [
+      {
+        "regex": "(?m)^50\\$\\sfrom\\ssteam\\s\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)\\n@everyone$",
+        "index": 1,
+        "reason": "Bugfix: wrong word + missing dot escape"
+      },
+      {
+        "regex": "(?m)^50\\$\\sfrom\\ssteam\\s\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)\\n@everyone$",
+        "index": 0,
+        "reason": "Improve protocol syntax + Consistency"
+      }
+    ]
+  },
+  {
+    "name": "Generic: Message link masked in steam URL string with promoting as $50 steam gift card + everyone tag",
+    "crit": 8,
+    "correct": 10,
+    "regex": "(?m)(?s)(?i)^50\\$\\s(from|for)\\ssteam[\\n\\s-]{0,3}\\[steamcommunity\\.com/gift/\\d*]\\(https?://.*\\)[\\n\\s-]{0,3}\\@everyone$",
+    "tag": ["markdown", "md", "spoof", "link", "scam", "phishing", "discord", "2023-03_improved_message_markdown_guild", "discord:experiment", "Improved Message Markdown Guild Experiment", "type:generic"],
+    "id": 4,
+    "example": [
+      "50$ for steam [steamcommunity.com/gift/758474483](https://qptr.thescamsite.ru/OqVS )\n@everyone",
+      "50$ from steam\n[steamcommunity.com/gift/76561198802362008](https://f-link.thescamsite.me/clNvh)\n@everyone"
+    ],
+    "inherit": [0],
+    "revision": [
+      {
+        "regex": "(?m)(?s)(?i)^50\\$\\sfrom\\ssteam[\\n\\s-]{0,3}\\[steamcommunity.com/gift/\\d*]\\(https?://.*\\)[\\n\\s-]{0,3}\\@everyone$",
+        "index": 1,
+        "reason": "Make more generic + fix dot escape"
+      },
+      {
+        "regex": "(?m)(?s)(?i)^50\\$\\sfrom\\ssteam[\\n\\s-]{0,3}\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)[\\n\\s-]{0,3}\\@everyone$",
+        "index": 0,
+        "reason": "Improve protocol syntax + Consistency"
+      }
+    ]
+  },
+  {
+    "name": "Identifier: Sexual content related word",
+    "crit": 4,
+    "correct": 2,
+    "regex": "(?i)(porn|sex|18|onlyfan)",
+    "tag": ["nsfw", "questionable", "18+", "type:identifier"],
+    "id": 5,
+    "example": ["18+"],
+    "inherit": [],
+    "revision": []
+  },
+  {
+    "name": "Generic: Discord invite sexual reference mention everyone",
+    "crit": 8,
+    "correct": 7,
+    "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan){1,}[a-zA-Z0-9-]*).*@everyone.*",
+    "tag": ["discord", "invite", "phishing", "sexual", "questionable", "18+", "nsfw", "stealer", "loginqr", "type:generic"],
+    "id": 6,
+    "example": ["TEEN/ONLYFANS PORN HERE JOIN NOW! \uD83C\uDF55\uD83C\uDF51 https://discord.gg/thescamsite-pornox @everyone"],
+    "inherit": [2, 5, 7],
+    "revision": []
+  },
+  {
+    "name": "Identifier: Discord invite link related 18+",
+    "crit": 6,
+    "correct": 7,
+    "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan){1,}[a-zA-Z0-9-]*)",
+    "tag": ["discord", "invite", "nsfw", "questionable", "18+", "type:identifier"],
+    "id": 7,
+    "example": ["discord.gg/thescamsite-pornox"],
+    "inherit": [2],
+    "revision": []
+  },
+  {
+    "name": "Identifier: IPv4 address",
+    "crit": 2,
+    "correct": 8,
+    "regex": "(?<protocol>https?://)?(?<ipv4>(?<sec1>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(?<sec2>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(?<sec3>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(?<sec4>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d))(?<port>:\\d{1,5})?",
+    "tag": ["sensitive", "personal"],
+    "example": ["8.8.4.4", "255.255.255.0", "type:identifier"],
+    "id": 8,
+    "inherit": [],
+    "revision": []
+  }
+]
