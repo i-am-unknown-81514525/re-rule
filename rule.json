@@ -136,7 +136,7 @@
     "tag": ["discord", "invite", "nsfw", "questionable", "18+", "type:identifier"],
     "id": 7,
     "example": ["discord.gg/thescamsite-pornox"],
-    "inherit": [2],
+    "inherit": [2, 5],
     "revision": []
   },
   {
