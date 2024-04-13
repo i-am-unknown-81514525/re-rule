@@ -144,15 +144,22 @@ fetch('rule.json')
                         let current = 0
                         inherit.innerHTML = `<strong>Inherit:</strong>`;
                         rule.inherit.forEach(id => {
-                            const inheritElement = document.createElement('a')
-                            inheritElement.href = '?search='+id
-                            inheritElement.innerHTML = id
-                            inherit.appendChild(inheritElement)
-                            current += 1
-                            if (current !== total) {
-                                inherit.insertAdjacentText('beforeend', ', ')
-                                inherit.appendChild(document.createElement('wbr'))
-                            }
+                            const button = document.createElement('span');
+                            button.textContent = id;
+                            button.classList.add('tag');
+                            button.addEventListener('click', () => {
+                                window.location.href = '?search=' + id;
+                            });
+                            inherit.appendChild(button);
+                            // const inheritElement = document.createElement('a')
+                            // inheritElement.href = '?search='+id
+                            // inheritElement.innerHTML = id
+                            // inherit.appendChild(inheritElement)
+                            // current += 1
+                            // if (current !== total) {
+                            //     inherit.insertAdjacentText('beforeend', ', ')
+                            //     inherit.appendChild(document.createElement('wbr'))
+                            // }
                         })
                         card.appendChild(inherit);
                     }
