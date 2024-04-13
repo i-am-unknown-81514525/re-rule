@@ -144,8 +144,8 @@
     "crit": 2,
     "correct": 8,
     "regex": "(?<protocol>https?://)?(?<ipv4>(?<sec1>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(?<sec2>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(?<sec3>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(?<sec4>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d))(?<port>:\\d{1,5})?",
-    "tag": ["sensitive", "personal"],
-    "example": ["8.8.4.4", "255.255.255.0", "type:identifier"],
+    "tag": ["sensitive", "personal", "type:identifier"],
+    "example": ["8.8.4.4", "255.255.255.0"],
     "id": 8,
     "inherit": [],
     "revision": []
