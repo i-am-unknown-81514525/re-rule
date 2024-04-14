@@ -110,12 +110,18 @@
     "name": "Identifier: Sexual content related word",
     "crit": 4,
     "correct": 2,
-    "regex": "(?i)(porn|sex|18|onlyfan)",
+    "regex": "(?i)[^a-z0-9](porn|sex|18(yrs?)?|onlyfan)[^a-rt-z0-9]",
     "tag": ["reason:adult", "type:identifier"],
     "id": 5,
     "example": ["18+"],
     "inherit": [],
-    "revision": []
+    "revision": [
+      {
+        "regex": "(?i)(porn|sex|18|onlyfan)",
+        "index": 0,
+        "reason": "Reduce false positive"
+      }
+    ]
   },
   {
     "name": "Generic: Discord invite sexual reference mention everyone",
