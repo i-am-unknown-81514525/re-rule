@@ -9,7 +9,7 @@
     "example": [
       "[steamcommunity.com/gift/76561198802362008](https://f-link.thescamsite.me/clNvh)"
     ],
-    "inherit": [],
+    "inherit": [9],
     "revision": [{
         "regex": "(?m)\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)",
         "index": 0,
@@ -26,7 +26,7 @@
     "example": [
       "50$ from steam\n[steamcommunity.com/gift/76561198802362008](https://f-link.thescamsite.me/clNvh)\n@everyone"
     ],
-    "inherit": [0, 4],
+    "inherit": [0, 4, 9],
     "revision": [
       {
         "regex": "(?m)^50\\$\\sfrom\\ssteam\\n\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)\\n@everyone$",
@@ -48,7 +48,7 @@
     "tag": ["type:identifier", "reason:advert", "info:discord"],
     "id": 2,
     "example": ["discord.gg/enigmadev"],
-    "inherit": [],
+    "inherit": [9],
     "revision": [
       {
         "regex": "(discord.gg|discord.com/invite)/[a-zA-Z0-9-]{1,}",
@@ -67,7 +67,7 @@
     "example": [
       "50$ for steam [steamcommunity.com/gift/758474483](https://qptr.thescamsite.ru/OqVS )\n@everyone"
     ],
-    "inherit": [0, 4],
+    "inherit": [0, 4, 9],
     "revision": [
       {
         "regex": "(?m)^50\\$\\sfrom\\ssteam\\s\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)\\n@everyone$",
@@ -92,7 +92,7 @@
       "50$ for steam [steamcommunity.com/gift/758474483](https://qptr.thescamsite.ru/OqVS )\n@everyone",
       "50$ from steam\n[steamcommunity.com/gift/76561198802362008](https://f-link.thescamsite.me/clNvh)\n@everyone"
     ],
-    "inherit": [0],
+    "inherit": [0, 9],
     "revision": [
       {
         "regex": "(?m)(?s)(?i)^50\\$\\sfrom\\ssteam[\\n\\s-]{0,3}\\[steamcommunity.com/gift/\\d*]\\(https?://.*\\)[\\n\\s-]{0,3}\\@everyone$",
@@ -131,7 +131,7 @@
     "tag": ["reason:adult", "type:generic", "reason:phishing", "info:discord"],
     "id": 6,
     "example": ["TEEN/ONLYFANS PORN HERE JOIN NOW! \uD83C\uDF55\uD83C\uDF51 https://discord.gg/thescamsite-pornox @everyone"],
-    "inherit": [2, 5, 7],
+    "inherit": [2, 5, 7, 9],
     "revision": []
   },
   {
@@ -142,7 +142,7 @@
     "tag": ["reason:adult", "type:identifier", "info:discord"],
     "id": 7,
     "example": ["discord.gg/thescamsite-pornox"],
-    "inherit": [2, 5],
+    "inherit": [2, 5, 9],
     "revision": []
   },
   {
