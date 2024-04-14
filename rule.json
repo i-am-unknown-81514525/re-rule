@@ -155,5 +155,16 @@
     "id": 8,
     "inherit": [],
     "revision": []
+  },
+  {
+    "name": "Identifier: Highlightable HTTP/HTTPS URL",
+    "crit": -1,
+    "correct": 9,
+    "regex": "(?<url>(?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:/[^\\n\\s/#]{1,})*(?:#[^\\n\\s]*)?)",
+    "tag": ["type:identifier"],
+    "example": ["https://google.com"],
+    "id": 9,
+    "inherit": [],
+    "revision": []
   }
 ]
