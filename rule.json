@@ -166,5 +166,15 @@
     "id": 9,
     "inherit": [],
     "revision": []
+  },
+  {
+    "name": "Identifier: URL masked in non-highlightable URL",
+    "crit": 4,
+    "correct": 7,
+    "regex": "\\[(?<display_url>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:/[^\\n\\s/#]{1,})*(?:#[^\\n\\s]*)?)\\]\\((?:<((?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:/[^\\n\\s/#]{1,})*(?:#[^\\n\\s]*)?)>|((?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:/[^\\n\\s/#]{1,})*(?:#[^\\n\\s]*)?))\\)",
+    "tag": ["type:identifier", "info:markdown", "reason:abusable"],
+    "id": 10,
+    "inherit": [9],
+    "revision": []
   }
 ]
