@@ -218,8 +218,8 @@
   {
     "name": "Identifier: E-mail",
     "crit": 2,
-    "correct": 8,
-    "regex": "(?<username>(?:[a-zA-Z0-9!#$%&'*+\\-/=?^_`{|}~]{1,}[\\.,]?){1,})@(?<domain>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24}))",
+    "correct": 7,
+    "regex": "(?<username>(?:[a-zA-Z0-9!#$%&'*+\\-/=?^_`{|}~]{1,}[\\.,]?)*[a-zA-Z0-9!#$%&'*+-/=?^_`{|}~])@(?<domain>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24}))",
     "tag": ["type:identifier", "reason:sensitive"],
     "id": 12,
     "inherit": [],
