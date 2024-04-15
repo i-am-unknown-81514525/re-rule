@@ -219,10 +219,16 @@
     "name": "Identifier: E-mail",
     "crit": 2,
     "correct": 8,
-    "regex": "(?<username>(?:[a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]{1,}[\\.,]?){1,})@(?<domain>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24}))",
+    "regex": "(?<username>(?:[a-zA-Z0-9!#$%&'*+\\-/=?^_`{|}~]{1,}[\\.,]?){1,})@(?<domain>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24}))",
     "tag": ["type:identifier", "reason:sensitive"],
     "id": 12,
     "inherit": [],
-    "revision": []
+    "revision": [
+      {
+        "regex": "(?<username>(?:[a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]{1,}[\\.,]?){1,})@(?<domain>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24}))",
+        "index": 0,
+        "reason": "Fix missing escape dash"
+      }
+    ]
   }
 ]
