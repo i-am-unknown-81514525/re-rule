@@ -147,7 +147,7 @@
   },
   {
     "name": "Identifier: IPv4 address",
-    "crit": 2,
+    "crit": 1,
     "correct": 8,
     "regex": "(?<protocol>https?://)?(?<ipv4>(?<sec1>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(?<sec2>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(?<sec3>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(?<sec4>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d))(?<port>:\\d{1,5})?",
     "tag": ["reason:sensitive", "type:identifier"],
@@ -214,5 +214,15 @@
         "reason": "Reduce bracket to make usable on discord Automod"
       }
     ]
+  },
+  {
+    "name": "Identifier: E-mail",
+    "crit": 2,
+    "correct": 8,
+    "regex": "(?<username>(?:[a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]{1,}[\\.,]?){1,})@(?<domain>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24}))",
+    "tag": ["type:identifier", "reason:sensitive"],
+    "id": 12,
+    "inherit": [],
+    "revision": []
   }
 ]
