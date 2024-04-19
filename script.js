@@ -72,18 +72,25 @@ fetch('rule.json')
             rules.forEach(rule => {
                 let thisRegex = rule.regex
                 const flags = rule.regex.match(flagmatcher);
+                console.log(flags)
                 let pureflags = '';
                 for (let flag in flags) {
-                    let act_flag = flag[2];
+                    console.log(flags[flag])
+                    let act_flag = flags[flag][2];
                     if (act_flag === '-') {
-                        act_flag = flag[3];
+                        act_flag = flags[flag][3];
                         continue;
                     }
                     if (act_flag === 'i' || act_flag === 'm') {
+                        console.log(act_flag)
                         pureflags += act_flag;
                     }
                     if (act_flag === 's') {
+                        thisRegex = thisRegex.replace('\\\\', '[JS-LITERAL-BACKSLASH]')
+                        thisRegex = thisRegex.replace('\\.', '[JS-LITERAL-DOT]')
                         thisRegex = thisRegex.replace('.', '(.|\\n)')
+                        thisRegex = thisRegex.replace('[JS-LITERAL-DOT]', '\\.')
+                        thisRegex = thisRegex.replace('[JS-LITERAL-BACKSLASH]', '\\\\')
                     }
                 }
                 thisRegex = thisRegex.replace(flagmatcher, '');
