@@ -250,5 +250,15 @@
         "reason": "Fix missing escape dash"
       }
     ]
+  },
+  {
+    "name": "Identifier: Potential scam phrase in discord",
+    "crit": 3,
+    "correct": 2,
+    "regex": "(?i)([^a-z0-9]|^)(nitro|steam)([^a-rt-z0-9]|$)",
+    "tag": ["reason:phishing", "type:identifier", "info:discord"],
+    "id": 13,
+    "inherit": [],
+    "revision": []
   }
 ]
