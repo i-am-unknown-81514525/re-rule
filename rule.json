@@ -124,15 +124,21 @@
     ]
   },
   {
-    "name": "Generic: Discord invite sexual reference mention everyone",
+    "name": "Generic: Discord invite sexual reference mention everyone [Underban]",
     "crit": 8,
     "correct": 7,
-    "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan){1,}[a-zA-Z0-9-]*).*@everyone.*",
-    "tag": ["reason:adult", "type:generic", "reason:phishing", "info:discord"],
+    "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan|xxx){1,}[a-zA-Z0-9-]*).*@everyone.*",
+    "tag": ["reason:adult", "type:generic", "reason:phishing", "info:discord", "info:underban"],
     "id": 6,
     "example": ["TEEN/ONLYFANS PORN HERE JOIN NOW! \uD83C\uDF55\uD83C\uDF51 https://discord.gg/thescamsite-pornox @everyone"],
     "inherit": [2, 5, 7, 9],
-    "revision": []
+    "revision": [
+      {
+        "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan){1,}[a-zA-Z0-9-]*).*@everyone.*",
+        "index": 0,
+        "reason": "Update rule against new message"
+      }
+    ]
   },
   {
     "name": "Identifier: Discord invite link related 18+",
