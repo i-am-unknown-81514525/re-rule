@@ -272,5 +272,28 @@
     "id": 13,
     "inherit": [],
     "revision": []
+  },
+  {
+    "name": "Generic: Discord invite sexual reference mention everyone [Overban]",
+    "crit": 8,
+    "correct": 6,
+    "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,}).*@everyone.*",
+    "tag": [
+      "reason:adult",
+      "type:generic",
+      "reason:phishing",
+      "info:discord",
+      "info:overban"
+    ],
+    "id": 14,
+    "example": ["TEEN/ONLYFANS PORN HERE JOIN NOW! \uD83C\uDF55\uD83C\uDF51 https://discord.gg/thescamsite-pornox @everyone"],
+    "inherit": [2, 5, 6, 7, 9],
+    "revision": [
+      {
+        "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan){1,}[a-zA-Z0-9-]*).*@everyone.*",
+        "index": 0,
+        "reason": "Update rule against new message"
+      }
+    ]
   }
 ]
