@@ -144,12 +144,18 @@
     "name": "Identifier: Discord invite link related 18+",
     "crit": 6,
     "correct": 7,
-    "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan){1,}[a-zA-Z0-9-]*)",
+    "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan|xxx){1,}[a-zA-Z0-9-]*)",
     "tag": ["reason:adult", "type:identifier", "info:discord"],
     "id": 7,
     "example": ["discord.gg/thescamsite-pornox"],
     "inherit": [2, 5, 9],
-    "revision": []
+    "revision": [
+      {
+        "regex": "\"(?<protocol>https?://)?(?<domain>discord\\\\.gg|discord\\\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan){1,}[a-zA-Z0-9-]*)\"",
+        "index": 0,
+        "reason":"Update rule against new message"
+      }
+    ]
   },
   {
     "name": "Identifier: IPv4 address",
