@@ -44,12 +44,17 @@
     "name": "Identifier: Discord invite link",
     "crit": 3,
     "correct": 10,
-    "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,})",
+    "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord(?:app)?\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,})",
     "tag": ["type:identifier", "reason:advert", "info:discord"],
     "id": 2,
     "example": ["discord.gg/enigmadev"],
     "inherit": [9],
     "revision": [
+      {
+        "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,})",
+        "index": 1,
+        "reason": "Bugfix:Missing check for discordapp.com"
+      },
       {
         "regex": "(discord.gg|discord.com/invite)/[a-zA-Z0-9-]{1,}",
         "index": 0,
@@ -127,12 +132,17 @@
     "name": "Generic: Discord invite sexual reference mention everyone [Underban]",
     "crit": 8,
     "correct": 7,
-    "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan|xxx){1,}[a-zA-Z0-9-]*).*@everyone.*",
+    "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord(?:app)?\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan|xxx){1,}[a-zA-Z0-9-]*).*@everyone.*",
     "tag": ["reason:adult", "type:generic", "reason:phishing", "info:discord", "info:underban"],
     "id": 6,
     "example": ["TEEN/ONLYFANS PORN HERE JOIN NOW! \uD83C\uDF55\uD83C\uDF51 https://discord.gg/thescamsite-pornox @everyone"],
     "inherit": [2, 5, 7, 9],
     "revision": [
+      {
+        "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan|xxx){1,}[a-zA-Z0-9-]*).*@everyone.*",
+        "index": 1,
+        "reason": "Bugfix:Missing check for discordapp.com"
+      },
       {
         "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan){1,}[a-zA-Z0-9-]*).*@everyone.*",
         "index": 0,
@@ -144,12 +154,17 @@
     "name": "Identifier: Discord invite link related 18+",
     "crit": 6,
     "correct": 7,
-    "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan|xxx){1,}[a-zA-Z0-9-]*)",
+    "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord(?:app)?\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan|xxx){1,}[a-zA-Z0-9-]*)",
     "tag": ["reason:adult", "type:identifier", "info:discord"],
     "id": 7,
     "example": ["discord.gg/thescamsite-pornox"],
     "inherit": [2, 5, 9],
     "revision": [
+      {
+        "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan|xxx){1,}[a-zA-Z0-9-]*)",
+        "index": 1,
+        "reason": "Bugfix:Missing check for discordapp.com"
+      },
       {
         "regex": "\"(?<protocol>https?://)?(?<domain>discord\\\\.gg|discord\\\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan){1,}[a-zA-Z0-9-]*)\"",
         "index": 0,
@@ -277,7 +292,7 @@
     "name": "Generic: Discord invite sexual reference mention everyone [Overban]",
     "crit": 8,
     "correct": 6,
-    "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,}).*@everyone.*",
+    "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord(?:app)?\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,}).*@everyone.*",
     "tag": [
       "reason:adult",
       "type:generic",
@@ -288,6 +303,12 @@
     "id": 14,
     "example": ["TEEN/ONLYFANS PORN HERE JOIN NOW! \uD83C\uDF55\uD83C\uDF51 https://discord.gg/thescamsite-pornox @everyone"],
     "inherit": [2, 5, 6, 7, 9],
-    "revision": []
+    "revision": [
+      {
+        "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,}).*@everyone.*",
+        "index": 1,
+        "reason": "Bugfix:Missing check for discordapp.com"
+      }
+    ]
   }
 ]
