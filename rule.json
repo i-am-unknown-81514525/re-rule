@@ -289,5 +289,16 @@
     "example": ["TEEN/ONLYFANS PORN HERE JOIN NOW! \uD83C\uDF55\uD83C\uDF51 https://discord.gg/thescamsite-pornox @everyone"],
     "inherit": [2, 5, 6, 7, 9],
     "revision": []
+  },
+  {
+    "name": "Exact Match: Discord DM spam invite `smythos` advert",
+    "crit": 6,
+    "correct": 10,
+    "regex": "discord\\.gg/smythos \\| (?:(?:https?://)(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z]{2,2}[a-zA-Z0-9-]{0,22})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?) \\| Special code for <@[0-9]{1,}>: (?<code>[0-9a-fA-F]{14})",
+    "tag": ["reason:spam", "type:exact", "info:discord"],
+    "id": 15,
+    "example": ["discord.gg/smythos | https://cdn.discordapp.com/attachments/1232098620640198698/1232100557141971004/onlyforyou.png?ex=66283a90&is=6626e910&hm=6b340ea7225cdb809342c6ec3430fbc921f3b9e0d302fc5803a7f039c6f98e87& | Special code for <@123456789>: 1234567890abcd"],
+    "inherit": [2, 9],
+    "revision": []
   }
 ]
