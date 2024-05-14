@@ -113,7 +113,7 @@
   },
   {
     "name": "Identifier: Sexual content related word",
-    "crit": 4,
+    "crit": -1,
     "correct": 2,
     "regex": "(?i)([^a-z0-9]|^)(porn|sex|18(yrs?)?|onlyfan)([^a-rt-z0-9]|$)",
     "tag": ["reason:adult", "type:identifier"],
