@@ -3,24 +3,31 @@
     "name": "Identifier: Clickable link masked with steam gift link",
     "crit": 8,
     "correct": 8,
-    "regex": "(?m)\\[steamcommunity.com/gift/\\d*]\\(https?://.*\\)",
+    "regex": "(?m)\\[steamcommunity\\.com/gift/[a-zA-Z0-9]*]\\(https?://.*\\)",
     "tag": ["reason:phishing", "type:identifier", "info:markdown", "info:steam"],
     "id": 0,
     "example": [
       "[steamcommunity.com/gift/76561198802362008](https://f-link.thescamsite.me/clNvh)"
     ],
     "inherit": [9, 10],
-    "revision": [{
+    "revision": [
+      {
+        "regex": "(?m)\\[steamcommunity.com/gift/\\d*]\\(https?://.*\\)",
+        "index": 1,
+        "reason": "Added ban path to include character due to new variant + fix missing dot escape"
+      },
+      {
         "regex": "(?m)\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)",
         "index": 0,
         "reason": "Improve protocol syntax + Consistency"
-      }]
+      }
+    ]
   },
   {
     "name": "Exact match: Message link masked in steam URL string with promoting as $50 steam gift card + everyone tag [variant 0]",
     "crit": 8,
     "correct": 10,
-    "regex": "(?m)^50\\$\\sfrom\\ssteam\\n\\[steamcommunity\\.com/gift/\\d*]\\(https?://.*\\)\\n@everyone$",
+    "regex": "(?m)^50\\$\\sfrom\\ssteam\\n\\[steamcommunity\\.com/gift/[a-zA-Z0-9]*]\\(https?://.*\\)\\n@everyone$",
     "tag": ["reason:phishing", "type:exact", "info:markdown", "info:steam"],
     "id": 1,
     "example": [
@@ -28,6 +35,11 @@
     ],
     "inherit": [0, 4, 9, 10],
     "revision": [
+      {
+        "regex": "(?m)^50\\$\\sfrom\\ssteam\\n\\[steamcommunity\\.com/gift/\\d*]\\(https?://.*\\)\\n@everyone$",
+        "index": 2,
+        "reason": "Added ban path to include character due to new variant"
+      },
       {
         "regex": "(?m)^50\\$\\sfrom\\ssteam\\n\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)\\n@everyone$",
         "index": 1,
@@ -66,7 +78,7 @@
     "name": "Exact match: Message link masked in steam URL string with promoting as $50 steam gift card + everyone tag [variant 1]",
     "crit": 8,
     "correct": 10,
-    "regex": "(?m)^50\\$\\sfor\\ssteam\\s\\[steamcommunity\\.com/gift/\\d*]\\(https?://.*\\)\\n@everyone$",
+    "regex": "(?m)^50\\$\\sfor\\ssteam\\s\\[steamcommunity\\.com/gift/[a-zA-Z0-9]*]\\(https?://.*\\)\\n@everyone$",
     "tag": ["reason:phishing", "type:exact", "info:markdown", "info:steam"],
     "id": 3,
     "example": [
@@ -74,6 +86,11 @@
     ],
     "inherit": [0, 4, 9, 10],
     "revision": [
+      {
+        "regex": "(?m)^50\\$\\sfor\\ssteam\\s\\[steamcommunity\\.com/gift/\\d*]\\(https?://.*\\)\\n@everyone$",
+        "index": 1,
+        "reason": "Added ban path to include character due to new variant"
+      },
       {
         "regex": "(?m)^50\\$\\sfrom\\ssteam\\s\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)\\n@everyone$",
         "index": 1,
@@ -90,15 +107,21 @@
     "name": "Generic: Message link masked in steam URL string with promoting as $50 steam gift card + everyone tag",
     "crit": 8,
     "correct": 10,
-    "regex": "(?m)(?s)(?i)^50\\$\\s(from|for)\\ssteam[\\n\\s-]{0,3}\\[steamcommunity\\.com/gift/\\d*]\\(https?://.*\\)[\\n\\s-]{0,3}\\@everyone$",
+    "regex": "(?m)(?s)(?i)^50\\$\\s((from|for)\\ssteam|gift(\\scard)?)[\\n\\s-]{0,3}\\[steamcommunity\\.com/gift/[a-zA-Z0-9]*]\\(https?://.*\\)[\\n\\s-]{0,3}\\(@everyone)?$",
     "tag": ["reason:phishing", "type:generic", "info:markdown", "info:steam"],
     "id": 4,
     "example": [
       "50$ for steam [steamcommunity.com/gift/758474483](https://qptr.thescamsite.ru/OqVS )\n@everyone",
-      "50$ from steam\n[steamcommunity.com/gift/76561198802362008](https://f-link.thescamsite.me/clNvh)\n@everyone"
+      "50$ from steam\n[steamcommunity.com/gift/76561198802362008](https://f-link.thescamsite.me/clNvh)\n@everyone",
+      "50$ gift\n[steamcommunity.com/gift/2918J091872](https://estafetaomk.thescamsite.top/gecbpqbcte)"
     ],
     "inherit": [0, 9, 10],
     "revision": [
+      {
+        "regex": "(?m)(?s)(?i)^50\\$\\s(from|for)\\ssteam[\\n\\s-]{0,3}\\[steamcommunity\\.com/gift/\\d*]\\(https?://.*\\)[\\n\\s-]{0,3}\\@everyone$",
+        "index": 1,
+        "reason": "Added ban path to include character due to new variant"
+      },
       {
         "regex": "(?m)(?s)(?i)^50\\$\\sfrom\\ssteam[\\n\\s-]{0,3}\\[steamcommunity.com/gift/\\d*]\\(https?://.*\\)[\\n\\s-]{0,3}\\@everyone$",
         "index": 1,
