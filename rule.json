@@ -107,7 +107,7 @@
     "name": "Generic: Message link masked in steam URL string with promoting as $50 steam gift card + everyone tag",
     "crit": 8,
     "correct": 10,
-    "regex": "(?m)(?s)(?i)^50\\$\\s((from|for)\\ssteam|gift(\\scard)?)[\\n\\s-]{0,3}\\[steamcommunity\\.com/gift/[a-zA-Z0-9]*]\\(https?://.*\\)[\\n\\s-]{0,3}\\(@everyone)?$",
+    "regex": "(?m)(?s)(?i)^50\\$\\s((from|for)\\ssteam|gift(\\scard)?)[\\n\\s-]{0,3}\\[steamcommunity\\.com/gift/[a-zA-Z0-9]*]\\(https?://.*\\)[\\n\\s-]{0,3}(@everyone)?$",
     "tag": ["reason:phishing", "type:generic", "info:markdown", "info:steam"],
     "id": 4,
     "example": [
