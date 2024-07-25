@@ -7,7 +7,7 @@ if (query.has('search')) {
 const flagmatcher = /\(\?-?.\)/g;
 
 fetch('rule.json')
-    .then(response => response.json())
+    .then(response => response.json()['rule'])
     .then(rules => {
         const cardContainer = document.getElementById('cardContainer');
         const filterContainer = document.getElementById('filterContainer');
