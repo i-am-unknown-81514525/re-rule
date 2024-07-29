@@ -488,6 +488,24 @@
         9
       ],
       "revision": []
+    },
+    {
+      "name": "Exact match: Trick click spamming Discord Invite",
+      "crit": 5,
+      "correct": 9,
+      "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord(?:app)?\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,}) Yo bro, I got an error when I open it, see if it's the same for you\\?",
+      "tag": [
+        "type:exact",
+        "info:discord",
+        "reason:advert",
+        "reason:spam"
+      ],
+      "example": [
+        "discord.gg/invite Yo bro, I got an error when I open it, see if it's the same for you?"
+      ],
+      "id":17,
+      "inherit": [2],
+      "revision": []
     }
   ],
   "profile": {
