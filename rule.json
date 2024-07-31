@@ -491,7 +491,7 @@
     },
     {
       "name": "Exact match: Trick click spamming Discord Invite",
-      "crit": 5,
+      "crit": 7,
       "correct": 9,
       "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord(?:app)?\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,}) Yo bro, I got an error when I open it, see if it's the same for you\\?",
       "tag": [
@@ -504,7 +504,20 @@
         "discord.gg/invite Yo bro, I got an error when I open it, see if it's the same for you?"
       ],
       "id":17,
-      "inherit": [2],
+      "inherit": [2, 9],
+      "revision": []
+    },
+    {
+      "name": "Identifier: Whatsapp group invite link - Potential scam group take advantage to E2E Encryption",
+      "crit": 3,
+      "correct": 7,
+      "regex": "(?i)(?:https?://)?chat\\.whatsapp\\.com/(?:[a-zA-Z0-9]){22}\\b",
+      "tag": ["type:identifier", "reason:scam", "reason:abusable", "info:e2ee", "info:whatsapp"],
+      "example": [
+        "https://chat.whatsapp.com/0123456789abcdefghijkl"
+      ],
+      "id": 18,
+      "inherit": [9],
       "revision": []
     }
   ],
