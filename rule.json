@@ -1,534 +1,560 @@
 {
-  "rule": [
-    {
-      "name": "Identifier: Clickable link masked with steam gift link",
-      "crit": 8,
-      "correct": 8,
-      "regex": "(?m)\\[steamcommunity\\.com/gift/[a-zA-Z0-9]*]\\(https?://.*\\)",
-      "tag": [
-        "reason:phishing",
-        "type:identifier",
-        "info:markdown",
-        "info:steam"
-      ],
-      "id": 0,
-      "example": [
-        "[steamcommunity.com/gift/76561198802362008](https://f-link.thescamsite.me/clNvh)"
-      ],
-      "inherit": [
-        9,
-        10
-      ],
-      "revision": [
+    "rule": [
         {
-          "regex": "(?m)\\[steamcommunity.com/gift/\\d*]\\(https?://.*\\)",
-          "index": 1,
-          "reason": "Added ban path to include character due to new variant + fix missing dot escape"
+            "name": "Identifier: Clickable link masked with steam gift link",
+            "crit": 8,
+            "correct": 8,
+            "regex": "(?m)\\[steamcommunity\\.com/gift/[a-zA-Z0-9]*]\\(https?://.*\\)",
+            "tag": [
+                "reason:phishing",
+                "type:identifier",
+                "info:markdown",
+                "info:steam"
+            ],
+            "id": 0,
+            "example": [
+                "[steamcommunity.com/gift/76561198802362008](https://f-link.thescamsite.me/clNvh)"
+            ],
+            "inherit": [
+                9,
+                10
+            ],
+            "revision": [
+                {
+                    "regex": "(?m)\\[steamcommunity.com/gift/\\d*]\\(https?://.*\\)",
+                    "index": 1,
+                    "reason": "Added ban path to include character due to new variant + fix missing dot escape"
+                },
+                {
+                    "regex": "(?m)\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)",
+                    "index": 0,
+                    "reason": "Improve protocol syntax + Consistency"
+                }
+            ]
         },
         {
-          "regex": "(?m)\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)",
-          "index": 0,
-          "reason": "Improve protocol syntax + Consistency"
+            "name": "Exact match: Message link masked in steam URL string with promoting as $50 steam gift card + everyone tag [variant 0]",
+            "crit": 8,
+            "correct": 10,
+            "regex": "(?m)^50\\$\\sfrom\\ssteam\\n\\[steamcommunity\\.com/gift/[a-zA-Z0-9]*]\\(https?://.*\\)\\n@everyone$",
+            "tag": [
+                "reason:phishing",
+                "type:exact",
+                "info:markdown",
+                "info:steam"
+            ],
+            "id": 1,
+            "example": [
+                "50$ from steam\n[steamcommunity.com/gift/76561198802362008](https://f-link.thescamsite.me/clNvh)\n@everyone"
+            ],
+            "inherit": [
+                0,
+                4,
+                9,
+                10
+            ],
+            "revision": [
+                {
+                    "regex": "(?m)^50\\$\\sfrom\\ssteam\\n\\[steamcommunity\\.com/gift/\\d*]\\(https?://.*\\)\\n@everyone$",
+                    "index": 2,
+                    "reason": "Added ban path to include character due to new variant"
+                },
+                {
+                    "regex": "(?m)^50\\$\\sfrom\\ssteam\\n\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)\\n@everyone$",
+                    "index": 1,
+                    "reason": "Bugfix: Missing dot escape"
+                },
+                {
+                    "regex": "(?m)^50\\$\\sfrom\\ssteam\\n\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)\\n@everyone$",
+                    "index": 0,
+                    "reason": "Improve protocol syntax + Consistency"
+                }
+            ]
+        },
+        {
+            "name": "Identifier: Discord invite link",
+            "crit": 3,
+            "correct": 10,
+            "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord(?:app)?\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,})",
+            "tag": [
+                "type:identifier",
+                "reason:advert",
+                "info:discord"
+            ],
+            "id": 2,
+            "example": [
+                "discord.gg/enigmadev"
+            ],
+            "inherit": [
+                9
+            ],
+            "revision": [
+                {
+                    "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,})",
+                    "index": 1,
+                    "reason": "Bugfix:Missing check for discordapp.com"
+                },
+                {
+                    "regex": "(discord.gg|discord.com/invite)/[a-zA-Z0-9-]{1,}",
+                    "index": 0,
+                    "reason": "Bugfix:missing dot escape"
+                }
+            ]
+        },
+        {
+            "name": "Exact match: Message link masked in steam URL string with promoting as $50 steam gift card + everyone tag [variant 1]",
+            "crit": 8,
+            "correct": 10,
+            "regex": "(?m)^50\\$\\sfor\\ssteam\\s\\[steamcommunity\\.com/gift/[a-zA-Z0-9]*]\\(https?://.*\\)\\n@everyone$",
+            "tag": [
+                "reason:phishing",
+                "type:exact",
+                "info:markdown",
+                "info:steam"
+            ],
+            "id": 3,
+            "example": [
+                "50$ for steam [steamcommunity.com/gift/758474483](https://qptr.thescamsite.ru/OqVS )\n@everyone"
+            ],
+            "inherit": [
+                0,
+                4,
+                9,
+                10
+            ],
+            "revision": [
+                {
+                    "regex": "(?m)^50\\$\\sfor\\ssteam\\s\\[steamcommunity\\.com/gift/\\d*]\\(https?://.*\\)\\n@everyone$",
+                    "index": 1,
+                    "reason": "Added ban path to include character due to new variant"
+                },
+                {
+                    "regex": "(?m)^50\\$\\sfrom\\ssteam\\s\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)\\n@everyone$",
+                    "index": 1,
+                    "reason": "Bugfix: wrong word + missing dot escape"
+                },
+                {
+                    "regex": "(?m)^50\\$\\sfrom\\ssteam\\s\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)\\n@everyone$",
+                    "index": 0,
+                    "reason": "Improve protocol syntax + Consistency"
+                }
+            ]
+        },
+        {
+            "name": "Generic: Message link masked in steam URL string with promoting as $50 steam gift card + everyone tag",
+            "crit": 8,
+            "correct": 10,
+            "regex": "(?m)(?s)(?i)^50\\$\\s((from|for)\\ssteam|gift(\\scard)?)[\\n\\s-]{0,3}\\[steamcommunity\\.com/gift/[a-zA-Z0-9]*]\\(https?://.*\\)[\\n\\s-]{0,3}(@everyone)?$",
+            "tag": [
+                "reason:phishing",
+                "type:generic",
+                "info:markdown",
+                "info:steam"
+            ],
+            "id": 4,
+            "example": [
+                "50$ for steam [steamcommunity.com/gift/758474483](https://qptr.thescamsite.ru/OqVS )\n@everyone",
+                "50$ from steam\n[steamcommunity.com/gift/76561198802362008](https://f-link.thescamsite.me/clNvh)\n@everyone",
+                "50$ gift\n[steamcommunity.com/gift/2918J091872](https://estafetaomk.thescamsite.top/gecbpqbcte)"
+            ],
+            "inherit": [
+                0,
+                9,
+                10
+            ],
+            "revision": [
+                {
+                    "regex": "(?m)(?s)(?i)^50\\$\\s(from|for)\\ssteam[\\n\\s-]{0,3}\\[steamcommunity\\.com/gift/\\d*]\\(https?://.*\\)[\\n\\s-]{0,3}\\@everyone$",
+                    "index": 1,
+                    "reason": "Added ban path to include character due to new variant"
+                },
+                {
+                    "regex": "(?m)(?s)(?i)^50\\$\\sfrom\\ssteam[\\n\\s-]{0,3}\\[steamcommunity.com/gift/\\d*]\\(https?://.*\\)[\\n\\s-]{0,3}\\@everyone$",
+                    "index": 1,
+                    "reason": "Make more generic + fix dot escape"
+                },
+                {
+                    "regex": "(?m)(?s)(?i)^50\\$\\sfrom\\ssteam[\\n\\s-]{0,3}\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)[\\n\\s-]{0,3}\\@everyone$",
+                    "index": 0,
+                    "reason": "Improve protocol syntax + Consistency"
+                }
+            ]
+        },
+        {
+            "name": "Identifier: Sexual content related word",
+            "crit": -1,
+            "correct": 2,
+            "regex": "(?i)([^a-z0-9]|^)(porn|sex|18(yrs?)?|onlyfan)([^a-rt-z0-9]|$)",
+            "tag": [
+                "reason:adult",
+                "type:identifier"
+            ],
+            "id": 5,
+            "example": [
+                "18+"
+            ],
+            "inherit": [],
+            "revision": [
+                {
+                    "regex": "(?i)(porn|sex|18|onlyfan)",
+                    "index": 0,
+                    "reason": "Reduce false positive"
+                }
+            ]
+        },
+        {
+            "name": "Generic: Discord invite sexual reference mention everyone [Underban]",
+            "crit": 8,
+            "correct": 7,
+            "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord(?:app)?\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan|xxx){1,}[a-zA-Z0-9-]*).*@everyone.*",
+            "tag": [
+                "reason:adult",
+                "type:generic",
+                "reason:phishing",
+                "info:discord",
+                "info:underban"
+            ],
+            "id": 6,
+            "example": [
+                "TEEN/ONLYFANS PORN HERE JOIN NOW! 🍕🍑 https://discord.gg/thescamsite-pornox @everyone"
+            ],
+            "inherit": [
+                2,
+                5,
+                7,
+                9
+            ],
+            "revision": [
+                {
+                    "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan|xxx){1,}[a-zA-Z0-9-]*).*@everyone.*",
+                    "index": 1,
+                    "reason": "Bugfix:Missing check for discordapp.com"
+                },
+                {
+                    "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan){1,}[a-zA-Z0-9-]*).*@everyone.*",
+                    "index": 0,
+                    "reason": "Update rule against new message"
+                }
+            ]
+        },
+        {
+            "name": "Identifier: Discord invite link related 18+",
+            "crit": 6,
+            "correct": 7,
+            "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord(?:app)?\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan|xxx){1,}[a-zA-Z0-9-]*)",
+            "tag": [
+                "reason:adult",
+                "type:identifier",
+                "info:discord"
+            ],
+            "id": 7,
+            "example": [
+                "discord.gg/thescamsite-pornox"
+            ],
+            "inherit": [
+                2,
+                5,
+                9
+            ],
+            "revision": [
+                {
+                    "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan|xxx){1,}[a-zA-Z0-9-]*)",
+                    "index": 1,
+                    "reason": "Bugfix:Missing check for discordapp.com"
+                },
+                {
+                    "regex": "\"(?<protocol>https?://)?(?<domain>discord\\\\.gg|discord\\\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan){1,}[a-zA-Z0-9-]*)\"",
+                    "index": 0,
+                    "reason": "Update rule against new message"
+                }
+            ]
+        },
+        {
+            "name": "Identifier: IPv4 address",
+            "crit": 1,
+            "correct": 8,
+            "regex": "(?<protocol>https?://)?(?<ipv4>(?<sec1>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(?<sec2>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(?<sec3>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(?<sec4>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d))(?<port>:\\d{1,5})?",
+            "tag": [
+                "reason:sensitive",
+                "type:identifier"
+            ],
+            "example": [
+                "8.8.4.4",
+                "255.255.255.0"
+            ],
+            "id": 8,
+            "inherit": [],
+            "revision": []
+        },
+        {
+            "name": "Identifier: Potentially Highlightable HTTP/HTTPS URL",
+            "crit": -1,
+            "correct": 9,
+            "regex": "(?<url>(?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z]{2,2}[a-zA-Z0-9-]{0,22})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)",
+            "tag": [
+                "type:identifier"
+            ],
+            "example": [
+                "https://google.com"
+            ],
+            "id": 9,
+            "inherit": [],
+            "revision": [
+                {
+                    "regex": "(?<url>(?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)",
+                    "index": 1,
+                    "reason": "Remove impossible TLD"
+                },
+                {
+                    "regex": "(?<url>(?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:/[^\\n\\s/#]{1,})*(?:#[^\\n\\s]*)?)",
+                    "index": 0,
+                    "reason": "Accept single slash without path after domain"
+                }
+            ]
+        },
+        {
+            "name": "Identifier: URL masked in non-highlightable URL",
+            "crit": 4,
+            "correct": 7,
+            "regex": "\\[(?<display_url>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z]{2,2}[a-zA-Z0-9-]{0,22})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)\\]\\((?:<((?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)>\\s*|((?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z]{2,2}[a-zA-Z0-9-]{0,22})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?))\\s*\\)",
+            "tag": [
+                "type:identifier",
+                "info:markdown",
+                "reason:abusable"
+            ],
+            "id": 10,
+            "inherit": [
+                9
+            ],
+            "revision": [
+                {
+                    "regex": "\\[(?<display_url>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)\\]\\((?:<((?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)>\\s*|((?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?))\\s*\\)",
+                    "index": 2,
+                    "reason": "Fix impossible TLD"
+                },
+                {
+                    "regex": "\\[(?<display_url>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)\\]\\((?:<((?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)>|((?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?))\\)",
+                    "index": 1,
+                    "reason": "Potential whitespace after url missing"
+                },
+                {
+                    "regex": "\\[(?<display_url>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:/[^\\n\\s/#]{1,})*(?:#[^\\n\\s]*)?)\\]\\((?:<((?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:/[^\\n\\s/#]{1,})*(?:#[^\\n\\s]*)?)>|((?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:/[^\\n\\s/#]{1,})*(?:#[^\\n\\s]*)?))\\)",
+                    "index": 0,
+                    "reason": "Accept single slash without path after domain"
+                }
+            ]
+        },
+        {
+            "name": "Identifier: URL masked in non-highlightable URL (less accurate) [253 char only]",
+            "crit": 4,
+            "correct": 6,
+            "regex": "\\[(?:[a-zA-Z0-9-]{1,}\\.){1,}[a-zA-Z]{2,2}[a-zA-Z0-9-]{0,22}(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?\\]\\(<?(?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}[a-zA-Z]{2,2}[a-zA-Z0-9-]{0,22}(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?>?\\s*\\)",
+            "tag": [
+                "type:identifier",
+                "info:markdown",
+                "reason:abusable"
+            ],
+            "id": 11,
+            "inherit": [
+                9,
+                10
+            ],
+            "revision": [
+                {
+                    "regex": "\\[(?:[a-zA-Z0-9-]{1,}\\.){1,}[a-zA-Z0-9-]{1,24}(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?\\]\\(<?(?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}[a-zA-Z0-9-]{1,24}(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?>?\\s*\\)",
+                    "index": 2,
+                    "reason": "Fix impossible TLD"
+                },
+                {
+                    "regex": "\\[(?:[a-zA-Z0-9-]{1,}\\.){1,}[a-zA-Z0-9-]{1,24}(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?\\]\\(<?(?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}[a-zA-Z0-9-]{1,24}(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?>?\\)",
+                    "index": 1,
+                    "reason": "Potential whitespace after url missing"
+                },
+                {
+                    "regex": "\\[(?<display_url>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)\\]\\((?:<?((?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)>?)\\)",
+                    "index": 0,
+                    "reason": "Reduce bracket to make usable on discord Automod"
+                }
+            ]
+        },
+        {
+            "name": "Identifier: E-mail [DISABLED DUE TO ReDOS, check index: 2 if you want to still use it. Will no longer be updated]",
+            "crit": 2,
+            "correct": 7,
+            "regex": "^\\b$",
+            "tag": [
+                "type:identifier",
+                "reason:sensitive"
+            ],
+            "id": 12,
+            "inherit": [],
+            "revision": [
+                {
+                    "regex": "(?<username>(?:[a-zA-Z0-9!#$%&'*+\\-/=?^_`{|}~]{1,}[\\.,]?)*[a-zA-Z0-9!#$%&'*+-/=?^_`{|}~])@(?<domain>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z]{2,2}[a-zA-Z0-9-]{0,22}))",
+                    "index": 2,
+                    "reason": "Disable ReDos vulunerable regex"
+                },
+                {
+                    "regex": "(?<username>(?:[a-zA-Z0-9!#$%&'*+\\-/=?^_`{|}~]{1,}[\\.,]?)*[a-zA-Z0-9!#$%&'*+-/=?^_`{|}~])@(?<domain>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24}))",
+                    "index": 1,
+                    "reason": "Fix impossible TLD"
+                },
+                {
+                    "regex": "(?<username>(?:[a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]{1,}[\\.,]?){1,})@(?<domain>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24}))",
+                    "index": 0,
+                    "reason": "Fix missing escape dash"
+                }
+            ]
+        },
+        {
+            "name": "Identifier: Potential scam phrase in discord",
+            "crit": 3,
+            "correct": 2,
+            "regex": "(?i)([^a-z0-9]|^)(nitro|steam)([^a-rt-z0-9]|$)",
+            "tag": [
+                "reason:phishing",
+                "type:identifier",
+                "info:discord"
+            ],
+            "id": 13,
+            "inherit": [],
+            "revision": []
+        },
+        {
+            "name": "Generic: Discord invite sexual reference mention everyone [Overban]",
+            "crit": 8,
+            "correct": 6,
+            "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord(?:app)?\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,}).*@everyone.*",
+            "tag": [
+                "reason:adult",
+                "type:generic",
+                "reason:phishing",
+                "info:discord",
+                "info:overban"
+            ],
+            "id": 14,
+            "example": [
+                "TEEN/ONLYFANS PORN HERE JOIN NOW! 🍕🍑 https://discord.gg/thescamsite-pornox @everyone"
+            ],
+            "inherit": [
+                2,
+                5,
+                6,
+                7,
+                9
+            ],
+            "revision": [
+                {
+                    "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,}).*@everyone.*",
+                    "index": 1,
+                    "reason": "Bugfix:Missing check for discordapp.com"
+                }
+            ]
+        },
+        {
+            "name": "Exact Match: Discord DM spam invite `smythos` advert",
+            "crit": 6,
+            "correct": 10,
+            "regex": "discord\\.gg/smythos \\| (?:(?:https?://)(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z]{2,2}[a-zA-Z0-9-]{0,22})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?) \\| Special code for <@[0-9]{1,}>: (?<code>[0-9a-fA-F]{14})",
+            "tag": [
+                "reason:spam",
+                "type:exact",
+                "info:discord",
+                "reason:advert"
+            ],
+            "id": 15,
+            "example": [
+                "discord.gg/smythos | https://cdn.discordapp.com/attachments/1232098620640198698/1232100557141971004/onlyforyou.png?ex=66283a90&is=6626e910&hm=6b340ea7225cdb809342c6ec3430fbc921f3b9e0d302fc5803a7f039c6f98e87& | Special code for <@123456789>: 1234567890abcd"
+            ],
+            "inherit": [
+                2,
+                9
+            ],
+            "revision": []
+        },
+        {
+            "name": "Identifier: Highlightable HTTP/HTTPS URL",
+            "crit": -1,
+            "correct": 9,
+            "regex": "(?<url>(?:https?://)(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z]{2,2}[a-zA-Z0-9-]{0,22})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)",
+            "tag": [
+                "type:identifier"
+            ],
+            "example": [
+                "https://google.com"
+            ],
+            "id": 16,
+            "inherit": [
+                9
+            ],
+            "revision": []
+        },
+        {
+            "name": "Exact match: Trick click spamming Discord Invite",
+            "crit": 7,
+            "correct": 9,
+            "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord(?:app)?\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,}) Yo bro, I got an error when I open it, see if it's the same for you\\?",
+            "tag": [
+                "type:exact",
+                "info:discord",
+                "reason:advert",
+                "reason:spam"
+            ],
+            "example": [
+                "discord.gg/invite Yo bro, I got an error when I open it, see if it's the same for you?"
+            ],
+            "id": 17,
+            "inherit": [
+                2,
+                9
+            ],
+            "revision": []
+        },
+        {
+            "name": "Identifier: Whatsapp group invite link - Potential scam group take advantage to E2E Encryption",
+            "crit": 3,
+            "correct": 7,
+            "regex": "(?i)(?:https?://)?chat\\.whatsapp\\.com/(?:[a-zA-Z0-9]){22}\\b",
+            "tag": [
+                "type:identifier",
+                "reason:scam",
+                "reason:abusable",
+                "info:e2ee",
+                "info:whatsapp"
+            ],
+            "example": [
+                "https://chat.whatsapp.com/0123456789abcdefghijkl"
+            ],
+            "id": 18,
+            "inherit": [
+                9
+            ],
+            "revision": []
+        },
+        {
+            "name": "Identifier: Discord hidden content/mention/link ban",
+            "crit": 5,
+            "correct": 7,
+            "regex": "(\\|\\|\\u200B\\|\\|){100,} (_ ){4,}.*",
+            "tag": [
+                "type:identifier",
+                "reason:abusable",
+                "info:discord"
+            ],
+            "example": [],
+            "id": 19,
+            "inherit": [],
+            "revision": []
         }
-      ]
-    },
-    {
-      "name": "Exact match: Message link masked in steam URL string with promoting as $50 steam gift card + everyone tag [variant 0]",
-      "crit": 8,
-      "correct": 10,
-      "regex": "(?m)^50\\$\\sfrom\\ssteam\\n\\[steamcommunity\\.com/gift/[a-zA-Z0-9]*]\\(https?://.*\\)\\n@everyone$",
-      "tag": [
-        "reason:phishing",
-        "type:exact",
-        "info:markdown",
-        "info:steam"
-      ],
-      "id": 1,
-      "example": [
-        "50$ from steam\n[steamcommunity.com/gift/76561198802362008](https://f-link.thescamsite.me/clNvh)\n@everyone"
-      ],
-      "inherit": [
-        0,
-        4,
-        9,
-        10
-      ],
-      "revision": [
-        {
-          "regex": "(?m)^50\\$\\sfrom\\ssteam\\n\\[steamcommunity\\.com/gift/\\d*]\\(https?://.*\\)\\n@everyone$",
-          "index": 2,
-          "reason": "Added ban path to include character due to new variant"
-        },
-        {
-          "regex": "(?m)^50\\$\\sfrom\\ssteam\\n\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)\\n@everyone$",
-          "index": 1,
-          "reason": "Bugfix: Missing dot escape"
-        },
-        {
-          "regex": "(?m)^50\\$\\sfrom\\ssteam\\n\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)\\n@everyone$",
-          "index": 0,
-          "reason": "Improve protocol syntax + Consistency"
-        }
-      ]
-    },
-    {
-      "name": "Identifier: Discord invite link",
-      "crit": 3,
-      "correct": 10,
-      "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord(?:app)?\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,})",
-      "tag": [
-        "type:identifier",
-        "reason:advert",
-        "info:discord"
-      ],
-      "id": 2,
-      "example": [
-        "discord.gg/enigmadev"
-      ],
-      "inherit": [
-        9
-      ],
-      "revision": [
-        {
-          "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,})",
-          "index": 1,
-          "reason": "Bugfix:Missing check for discordapp.com"
-        },
-        {
-          "regex": "(discord.gg|discord.com/invite)/[a-zA-Z0-9-]{1,}",
-          "index": 0,
-          "reason": "Bugfix:missing dot escape"
-        }
-      ]
-    },
-    {
-      "name": "Exact match: Message link masked in steam URL string with promoting as $50 steam gift card + everyone tag [variant 1]",
-      "crit": 8,
-      "correct": 10,
-      "regex": "(?m)^50\\$\\sfor\\ssteam\\s\\[steamcommunity\\.com/gift/[a-zA-Z0-9]*]\\(https?://.*\\)\\n@everyone$",
-      "tag": [
-        "reason:phishing",
-        "type:exact",
-        "info:markdown",
-        "info:steam"
-      ],
-      "id": 3,
-      "example": [
-        "50$ for steam [steamcommunity.com/gift/758474483](https://qptr.thescamsite.ru/OqVS )\n@everyone"
-      ],
-      "inherit": [
-        0,
-        4,
-        9,
-        10
-      ],
-      "revision": [
-        {
-          "regex": "(?m)^50\\$\\sfor\\ssteam\\s\\[steamcommunity\\.com/gift/\\d*]\\(https?://.*\\)\\n@everyone$",
-          "index": 1,
-          "reason": "Added ban path to include character due to new variant"
-        },
-        {
-          "regex": "(?m)^50\\$\\sfrom\\ssteam\\s\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)\\n@everyone$",
-          "index": 1,
-          "reason": "Bugfix: wrong word + missing dot escape"
-        },
-        {
-          "regex": "(?m)^50\\$\\sfrom\\ssteam\\s\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)\\n@everyone$",
-          "index": 0,
-          "reason": "Improve protocol syntax + Consistency"
-        }
-      ]
-    },
-    {
-      "name": "Generic: Message link masked in steam URL string with promoting as $50 steam gift card + everyone tag",
-      "crit": 8,
-      "correct": 10,
-      "regex": "(?m)(?s)(?i)^50\\$\\s((from|for)\\ssteam|gift(\\scard)?)[\\n\\s-]{0,3}\\[steamcommunity\\.com/gift/[a-zA-Z0-9]*]\\(https?://.*\\)[\\n\\s-]{0,3}(@everyone)?$",
-      "tag": [
-        "reason:phishing",
-        "type:generic",
-        "info:markdown",
-        "info:steam"
-      ],
-      "id": 4,
-      "example": [
-        "50$ for steam [steamcommunity.com/gift/758474483](https://qptr.thescamsite.ru/OqVS )\n@everyone",
-        "50$ from steam\n[steamcommunity.com/gift/76561198802362008](https://f-link.thescamsite.me/clNvh)\n@everyone",
-        "50$ gift\n[steamcommunity.com/gift/2918J091872](https://estafetaomk.thescamsite.top/gecbpqbcte)"
-      ],
-      "inherit": [
-        0,
-        9,
-        10
-      ],
-      "revision": [
-        {
-          "regex": "(?m)(?s)(?i)^50\\$\\s(from|for)\\ssteam[\\n\\s-]{0,3}\\[steamcommunity\\.com/gift/\\d*]\\(https?://.*\\)[\\n\\s-]{0,3}\\@everyone$",
-          "index": 1,
-          "reason": "Added ban path to include character due to new variant"
-        },
-        {
-          "regex": "(?m)(?s)(?i)^50\\$\\sfrom\\ssteam[\\n\\s-]{0,3}\\[steamcommunity.com/gift/\\d*]\\(https?://.*\\)[\\n\\s-]{0,3}\\@everyone$",
-          "index": 1,
-          "reason": "Make more generic + fix dot escape"
-        },
-        {
-          "regex": "(?m)(?s)(?i)^50\\$\\sfrom\\ssteam[\\n\\s-]{0,3}\\[steamcommunity.com/gift/\\d*]\\(https{0,1}://.*\\)[\\n\\s-]{0,3}\\@everyone$",
-          "index": 0,
-          "reason": "Improve protocol syntax + Consistency"
-        }
-      ]
-    },
-    {
-      "name": "Identifier: Sexual content related word",
-      "crit": -1,
-      "correct": 2,
-      "regex": "(?i)([^a-z0-9]|^)(porn|sex|18(yrs?)?|onlyfan)([^a-rt-z0-9]|$)",
-      "tag": [
-        "reason:adult",
-        "type:identifier"
-      ],
-      "id": 5,
-      "example": [
-        "18+"
-      ],
-      "inherit": [],
-      "revision": [
-        {
-          "regex": "(?i)(porn|sex|18|onlyfan)",
-          "index": 0,
-          "reason": "Reduce false positive"
-        }
-      ]
-    },
-    {
-      "name": "Generic: Discord invite sexual reference mention everyone [Underban]",
-      "crit": 8,
-      "correct": 7,
-      "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord(?:app)?\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan|xxx){1,}[a-zA-Z0-9-]*).*@everyone.*",
-      "tag": [
-        "reason:adult",
-        "type:generic",
-        "reason:phishing",
-        "info:discord",
-        "info:underban"
-      ],
-      "id": 6,
-      "example": [
-        "TEEN/ONLYFANS PORN HERE JOIN NOW! 🍕🍑 https://discord.gg/thescamsite-pornox @everyone"
-      ],
-      "inherit": [
-        2,
-        5,
-        7,
-        9
-      ],
-      "revision": [
-        {
-          "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan|xxx){1,}[a-zA-Z0-9-]*).*@everyone.*",
-          "index": 1,
-          "reason": "Bugfix:Missing check for discordapp.com"
-        },
-        {
-          "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan){1,}[a-zA-Z0-9-]*).*@everyone.*",
-          "index": 0,
-          "reason": "Update rule against new message"
-        }
-      ]
-    },
-    {
-      "name": "Identifier: Discord invite link related 18+",
-      "crit": 6,
-      "correct": 7,
-      "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord(?:app)?\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan|xxx){1,}[a-zA-Z0-9-]*)",
-      "tag": [
-        "reason:adult",
-        "type:identifier",
-        "info:discord"
-      ],
-      "id": 7,
-      "example": [
-        "discord.gg/thescamsite-pornox"
-      ],
-      "inherit": [
-        2,
-        5,
-        9
-      ],
-      "revision": [
-        {
-          "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan|xxx){1,}[a-zA-Z0-9-]*)",
-          "index": 1,
-          "reason": "Bugfix:Missing check for discordapp.com"
-        },
-        {
-          "regex": "\"(?<protocol>https?://)?(?<domain>discord\\\\.gg|discord\\\\.com/invite)/(?<invstr>[a-zA-Z0-9-]*(porn|sex|18|onlyfan){1,}[a-zA-Z0-9-]*)\"",
-          "index": 0,
-          "reason": "Update rule against new message"
-        }
-      ]
-    },
-    {
-      "name": "Identifier: IPv4 address",
-      "crit": 1,
-      "correct": 8,
-      "regex": "(?<protocol>https?://)?(?<ipv4>(?<sec1>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(?<sec2>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(?<sec3>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d)\\.(?<sec4>1\\d\\d|2[0-4]\\d|25[0-5]|[1-9]\\d|\\d))(?<port>:\\d{1,5})?",
-      "tag": [
-        "reason:sensitive",
-        "type:identifier"
-      ],
-      "example": [
-        "8.8.4.4",
-        "255.255.255.0"
-      ],
-      "id": 8,
-      "inherit": [],
-      "revision": []
-    },
-    {
-      "name": "Identifier: Potentially Highlightable HTTP/HTTPS URL",
-      "crit": -1,
-      "correct": 9,
-      "regex": "(?<url>(?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z]{2,2}[a-zA-Z0-9-]{0,22})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)",
-      "tag": [
-        "type:identifier"
-      ],
-      "example": [
-        "https://google.com"
-      ],
-      "id": 9,
-      "inherit": [],
-      "revision": [
-        {
-          "regex": "(?<url>(?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)",
-          "index": 1,
-          "reason": "Remove impossible TLD"
-        },
-        {
-          "regex": "(?<url>(?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:/[^\\n\\s/#]{1,})*(?:#[^\\n\\s]*)?)",
-          "index": 0,
-          "reason": "Accept single slash without path after domain"
-        }
-      ]
-    },
-    {
-      "name": "Identifier: URL masked in non-highlightable URL",
-      "crit": 4,
-      "correct": 7,
-      "regex": "\\[(?<display_url>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z]{2,2}[a-zA-Z0-9-]{0,22})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)\\]\\((?:<((?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)>\\s*|((?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z]{2,2}[a-zA-Z0-9-]{0,22})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?))\\s*\\)",
-      "tag": [
-        "type:identifier",
-        "info:markdown",
-        "reason:abusable"
-      ],
-      "id": 10,
-      "inherit": [
-        9
-      ],
-      "revision": [
-        {
-          "regex": "\\[(?<display_url>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)\\]\\((?:<((?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)>\\s*|((?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?))\\s*\\)",
-          "index": 2,
-          "reason": "Fix impossible TLD"
-        },
-        {
-          "regex": "\\[(?<display_url>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)\\]\\((?:<((?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)>|((?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?))\\)",
-          "index": 1,
-          "reason": "Potential whitespace after url missing"
-        },
-        {
-          "regex": "\\[(?<display_url>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:/[^\\n\\s/#]{1,})*(?:#[^\\n\\s]*)?)\\]\\((?:<((?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:/[^\\n\\s/#]{1,})*(?:#[^\\n\\s]*)?)>|((?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:/[^\\n\\s/#]{1,})*(?:#[^\\n\\s]*)?))\\)",
-          "index": 0,
-          "reason": "Accept single slash without path after domain"
-        }
-      ]
-    },
-    {
-      "name": "Identifier: URL masked in non-highlightable URL (less accurate) [253 char only]",
-      "crit": 4,
-      "correct": 6,
-      "regex": "\\[(?:[a-zA-Z0-9-]{1,}\\.){1,}[a-zA-Z]{2,2}[a-zA-Z0-9-]{0,22}(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?\\]\\(<?(?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}[a-zA-Z]{2,2}[a-zA-Z0-9-]{0,22}(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?>?\\s*\\)",
-      "tag": [
-        "type:identifier",
-        "info:markdown",
-        "reason:abusable"
-      ],
-      "id": 11,
-      "inherit": [
-        9,
-        10
-      ],
-      "revision": [
-        {
-          "regex": "\\[(?:[a-zA-Z0-9-]{1,}\\.){1,}[a-zA-Z0-9-]{1,24}(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?\\]\\(<?(?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}[a-zA-Z0-9-]{1,24}(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?>?\\s*\\)",
-          "index": 2,
-          "reason": "Fix impossible TLD"
-        },
-        {
-          "regex": "\\[(?:[a-zA-Z0-9-]{1,}\\.){1,}[a-zA-Z0-9-]{1,24}(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?\\]\\(<?(?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}[a-zA-Z0-9-]{1,24}(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?>?\\)",
-          "index": 1,
-          "reason": "Potential whitespace after url missing"
-        },
-        {
-          "regex": "\\[(?<display_url>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)\\]\\((?:<?((?:https?://)?(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)>?)\\)",
-          "index": 0,
-          "reason": "Reduce bracket to make usable on discord Automod"
-        }
-      ]
-    },
-    {
-      "name": "Identifier: E-mail [DISABLED DUE TO ReDOS, check index: 2 if you want to still use it. Will no longer be updated]",
-      "crit": 2,
-      "correct": 7,
-      "regex": "^\\b$",
-      "tag": [
-        "type:identifier",
-        "reason:sensitive"
-      ],
-      "id": 12,
-      "inherit": [],
-      "revision": [
-        {
-          "regex": "(?<username>(?:[a-zA-Z0-9!#$%&'*+\\-/=?^_`{|}~]{1,}[\\.,]?)*[a-zA-Z0-9!#$%&'*+-/=?^_`{|}~])@(?<domain>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z]{2,2}[a-zA-Z0-9-]{0,22}))",
-          "index": 2,
-          "reason": "Disable ReDos vulunerable regex"
-        },
-        {
-          "regex": "(?<username>(?:[a-zA-Z0-9!#$%&'*+\\-/=?^_`{|}~]{1,}[\\.,]?)*[a-zA-Z0-9!#$%&'*+-/=?^_`{|}~])@(?<domain>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24}))",
-          "index": 1,
-          "reason": "Fix impossible TLD"
-        },
-        {
-          "regex": "(?<username>(?:[a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]{1,}[\\.,]?){1,})@(?<domain>(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z0-9-]{1,24}))",
-          "index": 0,
-          "reason": "Fix missing escape dash"
-        }
-      ]
-    },
-    {
-      "name": "Identifier: Potential scam phrase in discord",
-      "crit": 3,
-      "correct": 2,
-      "regex": "(?i)([^a-z0-9]|^)(nitro|steam)([^a-rt-z0-9]|$)",
-      "tag": [
-        "reason:phishing",
-        "type:identifier",
-        "info:discord"
-      ],
-      "id": 13,
-      "inherit": [],
-      "revision": []
-    },
-    {
-      "name": "Generic: Discord invite sexual reference mention everyone [Overban]",
-      "crit": 8,
-      "correct": 6,
-      "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord(?:app)?\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,}).*@everyone.*",
-      "tag": [
-        "reason:adult",
-        "type:generic",
-        "reason:phishing",
-        "info:discord",
-        "info:overban"
-      ],
-      "id": 14,
-      "example": [
-        "TEEN/ONLYFANS PORN HERE JOIN NOW! 🍕🍑 https://discord.gg/thescamsite-pornox @everyone"
-      ],
-      "inherit": [
-        2,
-        5,
-        6,
-        7,
-        9
-      ],
-      "revision": [
-        {
-          "regex": "(?m)(?s)(?i).*(porn|sex|18|onlyfan){1,}.*(?<protocol>https?://)?(?<domain>discord\\.gg|discord\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,}).*@everyone.*",
-          "index": 1,
-          "reason": "Bugfix:Missing check for discordapp.com"
-        }
-      ]
-    },
-    {
-      "name": "Exact Match: Discord DM spam invite `smythos` advert",
-      "crit": 6,
-      "correct": 10,
-      "regex": "discord\\.gg/smythos \\| (?:(?:https?://)(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z]{2,2}[a-zA-Z0-9-]{0,22})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?) \\| Special code for <@[0-9]{1,}>: (?<code>[0-9a-fA-F]{14})",
-      "tag": [
-        "reason:spam",
-        "type:exact",
-        "info:discord",
-        "reason:advert"
-      ],
-      "id": 15,
-      "example": [
-        "discord.gg/smythos | https://cdn.discordapp.com/attachments/1232098620640198698/1232100557141971004/onlyforyou.png?ex=66283a90&is=6626e910&hm=6b340ea7225cdb809342c6ec3430fbc921f3b9e0d302fc5803a7f039c6f98e87& | Special code for <@123456789>: 1234567890abcd"
-      ],
-      "inherit": [
-        2,
-        9
-      ],
-      "revision": []
-    },
-    {
-      "name": "Identifier: Highlightable HTTP/HTTPS URL",
-      "crit": -1,
-      "correct": 9,
-      "regex": "(?<url>(?:https?://)(?:[a-zA-Z0-9-]{1,}\\.){1,}(?:[a-zA-Z]{2,2}[a-zA-Z0-9-]{0,22})(?::[0-9]{1,5})?(?:(?:/[^\\n\\s/#]{1,})*|/)(?:#[^\\n\\s]*)?)",
-      "tag": [
-        "type:identifier"
-      ],
-      "example": [
-        "https://google.com"
-      ],
-      "id": 16,
-      "inherit": [
-        9
-      ],
-      "revision": []
-    },
-    {
-      "name": "Exact match: Trick click spamming Discord Invite",
-      "crit": 7,
-      "correct": 9,
-      "regex": "(?<protocol>https?://)?(?<domain>discord\\.gg|discord(?:app)?\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,}) Yo bro, I got an error when I open it, see if it's the same for you\\?",
-      "tag": [
-        "type:exact",
-        "info:discord",
-        "reason:advert",
-        "reason:spam"
-      ],
-      "example": [
-        "discord.gg/invite Yo bro, I got an error when I open it, see if it's the same for you?"
-      ],
-      "id":17,
-      "inherit": [2, 9],
-      "revision": []
-    },
-    {
-      "name": "Identifier: Whatsapp group invite link - Potential scam group take advantage to E2E Encryption",
-      "crit": 3,
-      "correct": 7,
-      "regex": "(?i)(?:https?://)?chat\\.whatsapp\\.com/(?:[a-zA-Z0-9]){22}\\b",
-      "tag": ["type:identifier", "reason:scam", "reason:abusable", "info:e2ee", "info:whatsapp"],
-      "example": [
-        "https://chat.whatsapp.com/0123456789abcdefghijkl"
-      ],
-      "id": 18,
-      "inherit": [9],
-      "revision": []
+    ],
+    "profile": {
+        "scan": [
+            2,
+            5,
+            10,
+            11,
+            13,
+            16
+        ]
     }
-  ],
-  "profile": {
-    "scan": [
-      2,
-      5,
-      10,
-      11,
-      13,
-      16
-    ]
-  }
 }
