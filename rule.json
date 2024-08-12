@@ -535,7 +535,7 @@
             "name": "Identifier: Discord hidden content/mention/link ban",
             "crit": 5,
             "correct": 7,
-            "regex": "(\\|\\|\\u200B\\|\\|){100,} (_ ){4,}.*",
+            "regex": "(\\|\\|\\u200B\\|\\|){100,}.*(_ ){4,}.*",
             "tag": [
                 "type:identifier",
                 "reason:abusable",
