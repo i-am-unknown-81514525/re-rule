@@ -545,6 +545,27 @@
             "id": 19,
             "inherit": [],
             "revision": []
+        },
+        {
+            "name": "Exact Match: Prime Nuke discord spam",
+            "crit": 7,
+            "correct": 7,
+            "regex": "@\\u200B?everyone @\\u200B?here JOIN PRIME NUKE NOW for Bot https://youtu\\.be/[a-zA-Z0-9\\-]{5,}(?:\\?si=[a-zA-Z0-9\\-]{5,})? (?<protocol>https?://)?(?<domain>discord\\.gg|discord(?:app)?\\.com/invite)/(?<invstr>[a-zA-Z0-9-]{1,})",
+            "tag": [
+                "type:exact",
+                "reason:spam",
+                "info:discord"
+            ],
+            "example": [
+                "@​everyone @​here JOIN PRIME NUKE NOW for Bot https://youtu.be/hidden https://discord.gg/invite"
+            ],
+            "id": 20,
+            "inherit": [
+                2,
+                9,
+                16
+            ],
+            "reason": []
         }
     ],
     "profile": {
