@@ -607,6 +607,25 @@
                 16
             ],
             "reason": []
+        },
+        {
+            "name": "Exact Match(with potential variation): Stake scam",
+            "crit": 8,
+            "correct": 8,
+            "tag": [
+                "info:discord",
+                "reason:spam",
+                "reason:scam"
+            ],
+            "example": [],
+            "id": 21,
+            "inherit": [
+                9,
+                10,
+                11,
+                16
+            ],
+            "reason": []
         }
     ],
     "profile": {
@@ -616,7 +635,8 @@
             10,
             11,
             13,
-            16
+            16,
+            21
         ]
     }
 }
