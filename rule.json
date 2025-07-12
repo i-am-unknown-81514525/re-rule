@@ -628,7 +628,7 @@
             "name": "Identifier: 3 attachments phishing discord phishing message",
             "crit": 8,
             "correct": 5,
-            "regex": "( *https?://(media\\.discordapp\\.net|cdn\\.discordapp\\.com)/attachments/([\\d]{17,20}/){2}[^\\n ]* *\\n*){3}",
+            "regex": "( *https?://(media\\.discordapp\\.net|cdn\\.discordapp\\.com)/attachments/(\\d{17,20}/){2}[^\\n ]* *\\n*){3}",
             "tag": [
                 "type:identifier",
                 "tag:discord",
