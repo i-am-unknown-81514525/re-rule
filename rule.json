@@ -606,26 +606,43 @@
                 9,
                 16
             ],
-            "reason": []
+            "revision": []
         },
         {
-            "name": "Exact Match(with potential variation): Stake scam",
-            "crit": 8,
+            "name": "Identifier: Discord Attachment Link",
+            "crit": 2,
             "correct": 8,
+            "regex": "https?://(?:media\\.discordapp\\.net|cdn\\.discordapp\\.com)/attachments/[\\d]{17,20}/[\\d]{17,20}/[^\\n ]*",
             "tag": [
-                "info:discord",
-                "reason:spam",
-                "reason:scam"
+                "type:identifier",
+                "tag:discord"
             ],
             "example": [],
-            "id": 21,
+            "id": 22,
+            "inherit": [
+                9
+            ],
+            "revision": []
+        },
+        {
+            "name": "Identifier: 3 attachments phishing discord phishing message",
+            "crit": 8,
+            "correct": 5,
+            "regex": "(?: *https?://(?:media\\.discordapp\\.net|cdn\\.discordapp\\.com)/attachments/[\\d]{17,20}/[\\d]{17,20}/[^\\n ]* *\\n*){3}",
+            "tag": [
+                "type:identifier",
+                "tag:discord",
+                "reason:scam",
+                "reason:spam",
+                "reason:crypto"
+            ],
+            "example": [],
+            "id": 23,
             "inherit": [
                 9,
-                10,
-                11,
-                16
+                22
             ],
-            "reason": []
+            "revision": []
         }
     ],
     "profile": {
@@ -636,7 +653,8 @@
             11,
             13,
             16,
-            21
+            21,
+            23
         ]
     }
 }
