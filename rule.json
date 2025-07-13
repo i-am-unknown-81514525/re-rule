@@ -625,16 +625,17 @@
             "revision": []
         },
         {
-            "name": "Identifier: 3 attachments phishing discord phishing message",
+            "name": "Identifier: 2+ attachments phishing discord phishing message [OVERBAN]",
             "crit": 8,
             "correct": 5,
-            "regex": "( *https?://(media\\.discordapp\\.net|cdn\\.discordapp\\.com)/attachments/(\\d{17,20}/){2}[^\\n ]* *\\n*){3}",
+            "regex": "( *https?://(media\\.discordapp\\.net|cdn\\.discordapp\\.com)/attachments/(\\d{17,20}/){2}[^\\n ]* *\\n*){2,}",
             "tag": [
                 "type:identifier",
                 "tag:discord",
                 "reason:scam",
                 "reason:spam",
-                "reason:crypto"
+                "reason:crypto",
+                "info:overban"
             ],
             "example": [],
             "id": 23,
@@ -642,7 +643,13 @@
                 9,
                 22
             ],
-            "revision": []
+            "revision": [
+                {
+                    "regex": "( *https?://(media\\.discordapp\\.net|cdn\\.discordapp\\.com)/attachments/(\\d{17,20}/){2}[^\\n ]* *\\n*){3}",
+                    "index": 0,
+                    "reason": "Added that scammer now use more variation of attachment"
+                }
+            ]
         }
     ],
     "profile": {
