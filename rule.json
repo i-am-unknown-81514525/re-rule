@@ -650,6 +650,25 @@
                     "reason": "Added that scammer now use more variation of attachment"
                 }
             ]
+        },
+        {
+            "name": "Identifier: 18+ spam message",
+            "crit": 6,
+            "correct": 9,
+            "regex": "https?://leaksdaily\\.com/?ref=[0-9a-f]+",
+            "tag": [
+                "tag:identifier",
+                "tag:discord",
+                "reason:scam",
+                "reason:spam",
+                "reason:nsfw"
+            ],
+            "example": [],
+            "id": 24,
+            "inherit": [
+                9
+            ],
+            "revision": []
         }
     ],
     "profile": {
